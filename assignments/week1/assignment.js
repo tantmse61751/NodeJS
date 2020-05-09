@@ -26,7 +26,7 @@ const students = [
   },
 ];
 
-  // Assignment 3
+// Assignment 3
   var maleStudentCounting = 0;
   const gender = 'gender';
   students.forEach(student => {
@@ -36,6 +36,9 @@ const students = [
       }
   });
   console.log('number of male student: ' + maleStudentCounting);
+
+// fix Assignment 3
+
 
   // Assignment 4
   const studentNames = students.map(student => student.name);
