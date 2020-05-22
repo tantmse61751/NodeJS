@@ -1,0 +1,23 @@
+[
+    {
+    "id": "1",
+    "name": "Rustic Rubber Chair",
+    "price": 10000,
+    "category": "Mouse",
+    "dateUpdated": "Fri May 01 2020 00:00:00 GMT+0100 (CET)"
+    },
+    {
+    "id": "2",
+    "name": "Sleek Concrete Chips",
+    "price": 20000,
+    "category": "Car",
+    "dateUpdated": "Sun May 17 2020 00:00:00 GMT+0100 (CET)"
+    },
+    {
+    "id": "3",
+    "name": "Tasty Steel Pants",
+    "price": 30000,
+    "category": "Hat",
+    "dateUpdated": "Sun May 17 2020 05:00:00 GMT+0100 (CET)"
+    }
+]
