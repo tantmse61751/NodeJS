@@ -2,28 +2,53 @@
 const FS = require("fs");
 const FORMAT_DISTANCE_STRICT = require("date-fns/formatDistanceStrict");
 const VN_LOCAL = require("date-fns/locale/vi");
+const filePath = 'products.json';
 
-const P = new Promise((resolve, reject) => {
-    FS.readFile("products.json", (err, data) => {
+
+const readFilePromise = () => {
+    return new Promise((resolve, reject) => {
+        FS.readFile(filePath, (err, data) => {
         if (err) {
             reject(err);
             console.log(err);
         } else {
             resolve(JSON.parse(data)); // in the case of success, control flow goes to the then block with the content of the file.
         }
-    });
-})
-  .then((value) => {
-      console.log(`Number of Product: ${value.length}`);
-      value.forEach((p) => {
-          console.log(
-              `${p.id} - ${p.name} - ${formatPriceWithCommas(p.price) + "VND"} - Cập nhật cách đây ${calculateDistanceDate(convertToDate(p.dateUpdated))}`
-          );
       });
-  })
-    .catch((err) => {
-        console.log(err);
-  });
+    })
+        .then((value) => {
+        console.log(`Number of Product: ${value.length}`);
+        printProductDetails(value);
+    })
+      .catch((err) => {
+          console.log(err);
+    });
+  }
+
+  readFilePromise();
+
+// OLD version
+// const P = new Promise((resolve, reject) => {
+//     FS.readFile("products.json", (err, data) => {
+//         if (err) {
+//             reject(err);
+//             console.log(err);
+//         } else {
+//             resolve(JSON.parse(data)); // in the case of success, control flow goes to the then block with the content of the file.
+//         }
+//     });
+// })
+//   .then((value) => {
+//       console.log(`Number of Product: ${value.length}`);
+//       value.forEach((p) => {
+//           console.log(
+//               `${p.id} - ${p.name} - ${formatPriceWithCommas(p.price) + "VND"} - Cập nhật cách đây ${calculateDistanceDate(convertToDate(p.dateUpdated))}`
+//           );
+//       });
+//   })
+//     .catch((err) => {
+//         console.log(err);
+//   });
 
 function convertToDate(dateStr) {
     return new Date(dateStr);
@@ -41,3 +66,12 @@ function formatPriceWithCommas(price) {
     }
     return price;
 }
+
+function printProductDetails(products) {
+    products.forEach((p) => {
+        console.log(
+            `${p.id} - ${p.name} - ${formatPriceWithCommas(p.price) + "VND"} - Cập nhật cách đây ${calculateDistanceDate(convertToDate(p.dateUpdated))}`
+        );
+    });
+}
+
